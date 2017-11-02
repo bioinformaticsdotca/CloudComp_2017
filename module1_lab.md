@@ -7,11 +7,9 @@ header2: Working with Big Cancer Data in the Collaboratory Cloud 2017 Module 1 L
 image: /site_images/CBW_bigdata_icon.jpg
 home: https://bioinformaticsdotca.github.io/CloudComputing_2017
 description: This module will cover the steps required to setup and configure a virtual machine, and will show you how to access data in the Cloud.
-author: George M.
+author: George Mihaiescu
 modified: 2017-10-30
 ---
-
-#Working with Big Cancer Data in the Collaboratory Cloud lab
 
 This lab was created by George Mihaiescu
 
@@ -49,11 +47,11 @@ The lab may take between 1-2 hours, depending on your familiarity with Cloud Com
 
 In your browser, go to <https://console.cancercollaboratory.org>.  Log in using your provided credentials.
 
-<img src="mod3_a.png?raw=true" width="750" />
+<img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/mod3_a.png?raw=true" width="750" />
 
 Once logged in, the first page open will be the "Overview Page" that shows the resources available to your project, as well as historical usage.
 
-<img src="mod3_b.png?raw=true" width="750" />
+<img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/mod3_b.png?raw=true" width="750" />
 
 ## Before Launching a Virtual Machine
 
@@ -61,24 +59,24 @@ Once logged in, the first page open will be the "Overview Page" that shows the r
 
 In the bar on the left side of the page, under Project, Compute tab, click on "Access and Security" and then on the "Create Key Pair" button.  Name your key-pair and click on the "Create Key Pair" button.  This will prompt you to save a file to your computer.  Take note where you save this file because you will need to find it later.
 
-<img src="mod3_c.png?raw=true" width="750" />
+<img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/mod3_c.png?raw=true" width="750" />
 
 
 #### On Windows with PuTTY
 
 Openstack currently creates key-pairs that only work natively with Mac and Linux, so if you are using a Windows computer you will have to convert the pem key provided by Openstack to a format recognized by Putty, the free Windows SSH client utility. In order to do this, you need to start the PuTTY Key Generator <https://www.ssh.com/ssh/putty/windows/puttygen> and follow the instructions about converting the key provided at <https://github.com/naturalis/openstack-docs/wiki/Howto:-Creating-and-using-OpenStack-SSH-keypairs-on-Windows>, or in the screenshot below:
 
-<img src="key_conversion.png?raw=true" width="750" />
+<img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/key_conversion.png?raw=true" width="750" />
 
 ### Customize Your Security Groups - this step is not needed because we already customized the security group with a rule allowing all SSH traffic, but it's here for future reference
 
 You will need to know your IP address for this. To find your IP address, open a new tab or window and go to Google and search for "what is my ip".
 
-<img src="mod3_e.png?raw=true" class="center" width="750">
+<img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/mod3_e.png?raw=true" class="center" width="750">
 
 Return to the Collaboratory page.  Select the "Security Groups" tab and click on the "Create Security Group" button.  Name your security group (ie ssh_yourname) and write a description.  Click on "Create Security Group".
 
-<img src="mod3_f.png?raw=true" class="center" width="750">
+<img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/mod3_f.png?raw=true" class="center" width="750">
 
 For this lab, you will need to allow SSH access from your IP address, as well as HTTP.  Beside the name for the security group you just created, click on "Manage Rules".  Click on the "Add Rule" button.  
 
@@ -98,7 +96,7 @@ Repeat this step and add a second rule allowing access to TCP port 80:
 * CIDR  
 * your IP address  
 
-<img src="mod3_g.png?raw=true" width="750" />
+<img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/mod3_g.png?raw=true" width="750" />
 
 **Note:** If you want to allow access to the entire Internet, use "0.0.0.0/0" as the source when adding the security rules. This is insecure because it opens up your virtual machine to potential malicious traffic, so please use causiously and make sure you secure your virtual machine before doing so.
  
@@ -108,32 +106,32 @@ Repeat this step and add a second rule allowing access to TCP port 80:
 In the menu on the left, select "Instances."  Click on the "Launch Instance" button and follow the same screens as in the previous lab to start an instance with the following settings:
 
 ** Instance Name: use your last name **
-<img src="instance_name.png?raw=true" width="750" />
+<img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/instance_name.png?raw=true" width="750" />
 
 ** Select Boot Source: Image, Create New Volume: No, Ubuntu 16.04 - latest**
-<img src="image.png?raw=true" width="750" />
+<img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/image.png?raw=true" width="750" />
 
 ** Flavor: c1.micro **
-<img src="flavor.png?raw=true" width="750" />
+<img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/flavor.png?raw=true" width="750" />
 
 ** Network: CCRC_workshop_net (it should be already selected) **
-<img src="network.png?raw=true" width="750" />
+<img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/network.png?raw=true" width="750" />
 
 ** Network Ports: nothing to change here **
 ** Security group: default **
-<img src="sec_group.png?raw=true" width="750" />
+<img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/sec_group.png?raw=true" width="750" />
 
 ** Key Pair: your keypair's name (it should be already selected) **
 
 Leave the other tabs as they are and launch the instance by hitting the "Launch" button.
 
-<img src="launch.png?raw=true" width="750" />
+<img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/launch.png?raw=true" width="750" />
 
 It will take a few minutes for the instance to start.
 
 To view your instances, in the left hand menu, click on "Instances".
 
-<img src="instance_created.png?raw=true" width="750" />
+<img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/instance_created.png?raw=true" width="750" />
 
 ## Associate a Floating/Public IP Address
 
@@ -143,9 +141,9 @@ It is recommended to associate a floating/public IP address only to a single VM 
 
 From the "Compute" menu, select "Instances."  Beside the name of your instance, select "Associate Floating IP." and follow the screenshots below to associate a floating IP with your virtual machine.
 
-<img src="floating1.png?raw=true" width="750" />
-<img src="floating2.png?raw=true" width="750" />
-<img src="floating3.png?raw=true" width="750" />
+<img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/floating1.png?raw=true" width="750" />
+<img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/floating2.png?raw=true" width="750" />
+<img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/floating3.png?raw=true" width="750" />
 
 ## SSH Into Your Instance
 
