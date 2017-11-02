@@ -6,7 +6,7 @@ header1: Workshop Pages for Students
 header2: Working with Big Cancer Data in the Collaboratory Cloud 2017 Module 1 Lab
 image: /site_images/CBW_bigdata_icon.jpg
 home: https://bioinformaticsdotca.github.io/CloudComputing_2017
-description: This module will cover 
+description: This module will cover the steps required to setup and configure a virtual machine, and will show you how to access data in the Cloud.
 author: George M.
 modified: 2017-10-30
 ---
@@ -19,23 +19,28 @@ This lab was created by George Mihaiescu
 
 ### Description of the lab
 
-Welcome to the lab for Working with Big Cancer Data in the Collaboratory Cloud! This lab will take you through the steps to setup and configure your virtual machine with Docker packages and will show you how to access data in the Cloud.
+Welcome to the lab for Working with Big Cancer Data in the Collaboratory Cloud! 
+
+This lab will take you through the steps required to setup and configure your virtual machine with Docker packages, and will show you how to access data in the Cloud.
 
 After this lab, you will be able to:
 
 * Setup and launch a virtual machine
-* Setup and launch a Docker container
-* Setup the icgc storage client packaged as a docker container
-* Learn how to access protected data in the Cloud using the icgc storage client 
+* Install Docker and launch a container inside a virtual machine
+* Setup the ICGC storage client packaged as a docker container
+* Learn how to access protected data in the Cloud using the ICGC storage client 
 
 Things to know before you start:
 
-The lab may take between 1-2 hours, depending on your familiarity with Cloud Computing and alignment tasks.
+The lab may take between 1-2 hours, depending on your familiarity with Cloud Computing and Linux command line.
+
+**The project used by the lab is shared by all students, so please do not perform any actions on other students' virtual machines or other resources.**
    
 ### Requirements
 
 * Laptop connected to Internet
 * Web browser
+* SSH client (pre-installed on Linux or Mac, use the free Putty on Windows)
 * Collaboratory credentials (to be provided by lab assistants)
 
 **Note:** The Collaboratory credentials you are given for the workshop will only work during the workshop.
@@ -44,44 +49,38 @@ The lab may take between 1-2 hours, depending on your familiarity with Cloud Com
 
 In your browser, go to <https://console.cancercollaboratory.org>.  Log in using your provided credentials.
 
-![image_a](https://github.com/bioinformatics-ca/bioinformatics-ca.github.io/blob/master/2016_workshops/collaboratory/mod3/mod3_a.png?raw=true)
+<img src="mod3_a.png?raw=true" width="750" />
 
-Once logged in, the first page open will be the "Overview Page" that shows how many resources the project you are part of has access to, as well as the current usage.
+Once logged in, the first page open will be the "Overview Page" that shows the resources available to your project, as well as historical usage.
 
-![image_a](https://github.com/bioinformatics-ca/bioinformatics-ca.github.io/blob/master/2016_workshops/collaboratory/mod3/mod3_b.png?raw=true)
+<img src="mod3_b.png?raw=true" width="750" />
 
 ## Before Launching a Virtual Machine
 
 ### Create a SSH Key-pair
 
-In the bar on the left of the page, under the Project, Compute tab, click on "Access and Security" and then on the "Create Key Pair" button.  Name your key-pair and click on the "Create Key Pair" button.  This will prompt you to save a file to your computer.  Take note where you save this file because you will need to find it later.
+In the bar on the left side of the page, under Project, Compute tab, click on "Access and Security" and then on the "Create Key Pair" button.  Name your key-pair and click on the "Create Key Pair" button.  This will prompt you to save a file to your computer.  Take note where you save this file because you will need to find it later.
 
-![image_aa](https://github.com/bioinformatics-ca/bioinformatics-ca.github.io/blob/master/2016_workshops/collaboratory/mod3/mod3_c.png?raw=true)
+<img src="mod3_c.png?raw=true" width="750" />
 
-**Note:** Openstack currently creates key-pairs that only work natively with Mac and Linux.  If you create a key-pair with Collaboratory and want to use it with Windows, use [PuTTY Key Generator](https://the.earth.li/~sgtatham/putty/latest/x86/puttygen.exe) to convert the key-pair to a Putty compatible key-pair.   
 
 #### On Windows with PuTTY
 
-If you are using a Windows computer you will have to convert the pem key provided by Openstack to a format recognized by Putty, the free SSH client utility. In order to do this, you need to start the PuTTY Key Generator (https://the.earth.li/~sgtatham/putty/latest/x86/puttygen.exe)
+Openstack currently creates key-pairs that only work natively with Mac and Linux, so if you are using a Windows computer you will have to convert the pem key provided by Openstack to a format recognized by Putty, the free Windows SSH client utility. In order to do this, you need to start the PuTTY Key Generator <https://www.ssh.com/ssh/putty/windows/puttygen> and follow the instructions about converting the key provided at <https://github.com/naturalis/openstack-docs/wiki/Howto:-Creating-and-using-OpenStack-SSH-keypairs-on-Windows>, or in the screenshot below:
 
-<img src="https://github.com/bioinformatics-ca/bioinformatics-ca.github.io/blob/master/2016_workshops/collaboratory/mod3/mod3_aa.png?raw=true" class="center" width="400">
-
-<img src="https://github.com/bioinformatics-ca/bioinformatics-ca.github.io/blob/master/2016_workshops/collaboratory/mod3/mod3_bb.png?raw=true" class="center" width="400">
-
-
-<img src="https://github.com/bioinformatics-ca/bioinformatics-ca.github.io/blob/master/2016_workshops/collaboratory/mod3/mod3_cc.png?raw=true" class="center" width="400">
+<img src="key_conversion.png?raw=true" width="750" />
 
 ### Customize Your Security Groups - this step is not needed because we already customized the security group with a rule allowing all SSH traffic, but it's here for future reference
 
-You will need to know your IP address for this.  To find you IP address, open a new tab or window and go to Google and search for "what is my ip".
+You will need to know your IP address for this. To find your IP address, open a new tab or window and go to Google and search for "what is my ip".
 
-![image_a](https://github.com/bioinformatics-ca/bioinformatics-ca.github.io/blob/master/2016_workshops/collaboratory/mod3/mod3_e.png?raw=true)
+<img src="mod3_e.png?raw=true" class="center" width="750">
 
 Return to the Collaboratory page.  Select the "Security Groups" tab and click on the "Create Security Group" button.  Name your security group (ie ssh_yourname) and write a description.  Click on "Create Security Group".
 
-![image_a](https://github.com/bioinformatics-ca/bioinformatics-ca.github.io/blob/master/2016_workshops/collaboratory/mod3/mod3_f.png?raw=true)
+<img src="mod3_f.png?raw=true" class="center" width="750">
 
-You will need to allow SSH access from your IP address.  Beside the name for the security group you just created, click on "Manage Rules".  Click on the "Add Rule" button.  
+For this lab, you will need to allow SSH access from your IP address, as well as HTTP.  Beside the name for the security group you just created, click on "Manage Rules".  Click on the "Add Rule" button.  
 
 In the dropdown menus and boxes, select or enter the following to allow SSH traffic:
 * Custom TCP Rule   
@@ -91,7 +90,7 @@ In the dropdown menus and boxes, select or enter the following to allow SSH traf
 * CIDR  
 * your IP address  
 
-Repeat this step and add a second rule with allowing TCP port 80:
+Repeat this step and add a second rule allowing access to TCP port 80:
 * Custom TCP Rule   
 * Ingress  
 * Port  
@@ -99,45 +98,42 @@ Repeat this step and add a second rule with allowing TCP port 80:
 * CIDR  
 * your IP address  
 
-![image_a](https://github.com/bioinformatics-ca/bioinformatics-ca.github.io/blob/master/2016_workshops/collaboratory/mod3/mod3_g.png?raw=true)
+<img src="mod3_g.png?raw=true" width="750" />
 
+**Note:** If you want to allow access to the entire Internet, use "0.0.0.0/0" as the source when adding the security rules. This is insecure because it opens up your virtual machine to potential malicious traffic, so please use causiously and make sure you secure your virtual machine before doing so.
+ 
 
-### Choose Your Flavor
+### Launch your virtual machine
 
-In the menu on the left, select "Instances."  Click on the "Launch Instance" button.
+In the menu on the left, select "Instances."  Click on the "Launch Instance" button and follow the same screens as in the previous lab to start an instance with the following settings:
 
-![image_a](https://github.com/bioinformatics-ca/bioinformatics-ca.github.io/blob/master/2016_workshops/collaboratory/mod3/mod3_h.png?raw=true)
+** Instance Name: use your last name **
+<img src="instance_name.png?raw=true" width="750" />
 
-Make sure you are in the "Details" tab.  
+** Select Boot Source: Image, Create New Volume: No, Ubuntu 16.04 - latest**
+<img src="image.png?raw=true" width="750" />
 
-In the dropdown menus and boxes, select or enter:
+** Flavor: c1.micro **
+<img src="flavor.png?raw=true" width="750" />
 
-* Nova  
-* Name you instance  
-* c1.micro  
-* 1  
-* Boot from image  
-* Ubuntu 16.04 - latest
+** Network: CCRC_workshop_net (it should be already selected) **
+<img src="network.png?raw=true" width="750" />
 
-![image_a](https://github.com/bioinformatics-ca/bioinformatics-ca.github.io/blob/master/2016_workshops/collaboratory/mod3/mod3_i.png?raw=true)
+** Network Ports: nothing to change here **
+** Security group: default **
+<img src="sec_group.png?raw=true" width="750" />
 
-Select the "Access and Security" tab.  Select the key pair you previously created and check the box beside "ssh".  
+** Key Pair: your keypair's name (it should be already selected) **
 
-![image_a](https://github.com/bioinformatics-ca/bioinformatics-ca.github.io/blob/master/2016_workshops/collaboratory/mod3/mod3_j.png?raw=true)
+Leave the other tabs as they are and launch the instance by hitting the "Launch" button.
 
-Select the "Networking" tab.  Choose the appropriate network.
-
-![image_a](https://github.com/bioinformatics-ca/bioinformatics-ca.github.io/blob/master/2016_workshops/collaboratory/mod3/mod3_k.png?raw=true)
-
-Launch the instance by hitting the "Launch" button.
-
-![image_a](https://github.com/bioinformatics-ca/bioinformatics-ca.github.io/blob/master/2016_workshops/collaboratory/mod3/mod3_l.png?raw=true)
+<img src="launch.png?raw=true" width="750" />
 
 It will take a few minutes for the instance to start.
 
 To view your instances, in the left hand menu, click on "Instances".
 
-![image_a](https://github.com/bioinformatics-ca/bioinformatics-ca.github.io/blob/master/2016_workshops/collaboratory/mod3/mod3_m.png?raw=true)
+<img src="instance_created.png?raw=true" width="750" />
 
 ## Associate a Floating/Public IP Address
 
@@ -145,11 +141,13 @@ By default, the VM will have a private IP allocated that is only reachable from 
 
 It is recommended to associate a floating/public IP address only to a single VM and use that one as a “jumpserver”.
 
-From the "Compute" menu, select "Instances."  Beside the name of your instance, select "Associate Floating IP."
+From the "Compute" menu, select "Instances."  Beside the name of your instance, select "Associate Floating IP." and follow the screenshots below to associate a floating IP with your virtual machine.
 
-![image_a](https://github.com/bioinformatics-ca/bioinformatics-ca.github.io/blob/master/2016_workshops/collaboratory/mod3/mod3_aaa.png?raw=true)
+<img src="floating1.png?raw=true" width="750" />
+<img src="floating2.png?raw=true" width="750" />
+<img src="floating3.png?raw=true" width="750" />
 
-## Log Into Your Instance
+## SSH Into Your Instance
 
 ### Mac/Linux Instructions
 
@@ -179,15 +177,15 @@ To configure Putty, start Putty and do the following:
 XXX is the last octet from the floating IP address you assign to the instance.
 
  
-<img src="../../../resources/Putty_Basic_Options.png" alt="Basic Putty Options" class="center">
+<img src="../../../resources/Putty_Basic_Options.png" alt="Basic Putty Options" class="center" width="750">
 
 * In the left hand categories, under the Connection category choose Data.  In the auto-login username field write ***ubuntu***.
 
-<img src="../../../resources/Putty_Data_Options.png" alt="Putty Data Options" class="center"> 
+<img src="../../../resources/Putty_Data_Options.png" alt="Putty Data Options" class="center" width="750"> 
 
-* In the left hand categories, in the Connection category next to SSH click on the **+**. Click on Auth. In the private-key file for authentication field, hit browse and find your private key, the file you downloaded previously.
+* In the left hand categories, in the Connection category next to SSH click on the **+**. Click on Auth. In the private-key file for authentication field, hit browse and find the private key that you converted previously from a PEM format to a PPK format.
 
-<img src="../../../resources/Putty_Auth_Options.png" alt="Putty Auth Options" class="center">
+<img src="../../../resources/Putty_Auth_Options.png" alt="Putty Auth Options" class="center" width="750">
 
 * In the left hand categories, click on Session.  In the Saved Sessions field write **Collaboratory** and click save.
 
@@ -195,7 +193,7 @@ XXX is the last octet from the floating IP address you assign to the instance.
 
 ## Customize Your Virtual Machine
 
-You will need to upgrade your package index and existing packages by running:
+You will first need to upgrade your package index and existing packages by running:
 
 ```
 sudo apt-get update && sudo apt-get upgrade
@@ -216,7 +214,7 @@ sudo add-apt-repository \
    stable"
 ```
 
-This will install Docker and run hello-world to test the installation:
+The following commands will install Docker and run hello-world to test the installation:
 
 ```
 sudo apt-get -y install docker-ce
@@ -229,13 +227,13 @@ sudo docker run hello-world
 
 ## Run a Bioinformatics Tool in Docker
 
-We will first need a data file.  To get the file from the ftp server, we will use the `wget` command.
+You will first need a data file.  To get the file from the ftp server, we will use the `wget` command.
 
 ```
 wget ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase3/data/NA12878/alignment/NA12878.chrom20.ILLUMINA.bwa.CEU.low_coverage.20121211.bam
 ```
 
-We will need the Docker container with the "bamstats" tool.  We will use the Docker `pull` command to retrieve the container.
+You will need the Docker container with the "bamstats" tool.  Please use the Docker `pull` command to retrieve the container.
 
 ```
 sudo docker pull quay.io/briandoconnor/dockstore-tool-bamstats
@@ -249,13 +247,13 @@ sudo docker run -it -v `pwd`/NA12878.chrom20.ILLUMINA.bwa.CEU.low_coverage.20121
 
 In this command, `-it` means run interactively and `-v` maps a file or directory from the VM inside the Docker container.  Whatever is created inside "/home/ubuntu" (inside the container) will be in the host "/tmp" directory.  This will allow the files that are created inside the container to survive after the container is terminated.
 
-The OS inside the Docker container is different than that of the host VM.  You can check this with:
+The OS inside the Docker container is different than that of the host VM, and you can check this with:
 
 ```
 cat /etc/lsb-release
 ```
 
-Recall that we chose Ubuntu 16.04 for our VM.
+Recall that you chose Ubuntu 16.04 for our VM, but the container is built based on a Ubuntu 14.04 image.
 
 Inside the Docker container, execute the bamstats binary against the sample file.
 
@@ -269,31 +267,38 @@ Exit the docker container by typing "exit", and go to "/tmp" where the report wa
 exit
 cd /tmp 
 unzip bamstats_report.zip 
+```
+
+Start a simple Python http server that will allow you to see the bamstats report in the browser:
+
+```
 sudo python3 -m http.server 80
 ```
 
 Visit the page to see the statistics for that sample BAM:
 	<http://142.1.177.XXX/bamstats_report.html>
 	
-XXX is the last octet from the floating IP address you assigned to the instance.
+XXX is the last group of numbers from the floating IP address you assigned to the instance.
+
+To stop the Python http server, press Ctrl+C.
 
 
 ## Access Data in the Cloud
 
-ICGC (stored at GNOS sites, Collaboratory, AWS S3) and TCGA (stored at cgHub and GDC) are indexed at https://dcc.icgc.org/repositories.
+ICGC data (stored at GNOS sites, Collaboratory, AWS S3) and TCGA (stored at cgHub and GDC) are indexed at https://dcc.icgc.org/repositories.
 
 Other data sets are usually available on-line and can be accessed over HTTP(s) protocol.
 
 Data repositories have different access policies and download clients:
 http://docs.icgc.org/cloud/repositories/#download-client-operation_1
 
-OICR created a unified client that can be used to download data from multiple repos http://docs.icgc.org/cloud/icgc-get/ , but for this lab we will use the native "storage client".
+OICR created a unified client that can be used to download data from multiple repos http://docs.icgc.org/cloud/icgc-get/, but for this lab we will use the native "ICGC storage client" that can be used only in Collaboratory and AWS.
 
 ### Collaboratory Data
 
-You need DACO approval to access ICGC data stored in the Cloud, but for this workshop we uploaded a set of BAM files that are open access which can be used to test the functionality of the storage client. The same methodology can be used to download protected data, if a valid access token is used. 
+In order to access ICGC data stored in the Cloud you need DACO approval, but for this workshop we uploaded a set of BAM files that are open access which can be used to test the functionality of the storage client. The same methodology can be used to download protected data, if a valid access token is used. 
 
-Below is the list of open-access BAM files and their object IDs:
+Below is the list of open-access BAM files and their object IDs stored in Collaboratory:
 
 ```
 HCC1143.bam.bai         dae332b8-107f-5e58-aefa-5c00de5d0bb3
@@ -317,7 +322,7 @@ HCC1143_BL.RG15.bam     9717921b-67f3-5914-8c66-db3ef1ad6d61
 HCC1143_BL.RG16.bam     891f33b1-b355-525e-a4e4-87a0397f5be4
 ```
 
-![image_a](https://github.com/bioinformatics-ca/bioinformatics-ca.github.io/blob/master/2016_workshops/collaboratory/mod3/mod3_bbb.png?raw=true)
+<img src="https://github.com/bioinformatics-ca/bioinformatics-ca.github.io/blob/master/2016_workshops/collaboratory/mod3/mod3_bbb.png?raw=true" width="750" />
 
 ### Storage Client
 
@@ -330,21 +335,21 @@ Advanced functionality provided by the storage client:
 * Single file download or manifest based download  
 * Generate a pre-signed temporary URL (24 hours) for a file that can be used to download with WGET or cURL  
 
-![image_a](https://github.com/bioinformatics-ca/bioinformatics-ca.github.io/blob/master/2016_workshops/collaboratory/mod3/mod3_ccc.png?raw=true)
+<img src="https://github.com/bioinformatics-ca/bioinformatics-ca.github.io/blob/master/2016_workshops/collaboratory/mod3/mod3_ccc.png?raw=true" width="750" />
 
 
 ### Create a Configuration File
 
-By default, the storage client only uses a single core for downloading, so it's important to adapt its configuration to your local environment.
+By default, the storage client only uses a single cpu for its operation, so it's important to tune its configuration to your local environment if you run it on a virtual machine with mutiple CPUs.
 
-First, determine how many cores and how much memory you can allocate to the download.
+First, determine how many cores and how much memory you have available.
 
 ```
 cat /proc/cpuinfo | grep -c processor
 free -g
 ```
 
-Considering that usually there is no analysys going until the data is restrieved, it is safe to allocate 7 cores and 49 GB of RAM (7 GB per thread) on a VM with 8 cores and 55 GB of RAM, leaving 6 GB of RAM for the system. Create a text file `/home/ubuntu/application.properties` that contains the access token and the number of cores and memory per core.  Use `cat` to view the file contents.  
+Considering that usually there is no analysys going until the data is retrieved, it is safe to allocate 7 cores and 49 GB of RAM (7 GB per thread) on a VM with 8 cores and 55 GB of RAM, leaving one CPU and 6 GB of RAM for the system. Create a text file `/home/ubuntu/application.properties` that contains the access token and the number of cores and memory per core as below.  Use `cat` to view the file contents.  
 
 ```
 cat /home/ubuntu/application.properties
@@ -369,17 +374,17 @@ sudo docker run -v /tmp/:/data -v /home/ubuntu/application.properties:/icgc/icgc
 
 As the files uploaded for this lab's purposes are open access cell line BAM files, their size is smaller (~ 5 GB) so the download should complete in a couple of minutes. 
 
-It takes around 16 min for a 100 GB file to be downloaded using a VM with 8 cores and 56 GB of RAM, and an additional 5-6 min is needed by the storage client to perform an automated checksum to verify downloaded data integrity.
+**Note:** It takes around 16 min for a 100 GB file to be downloaded using a VM with 8 cores and 56 GB of RAM, and an additional 5-6 min is needed by the storage client to perform an automated checksum to verify downloaded data integrity.
 
-The download speed depends on the disk IO which is shared with other VMs running on the same physical server, as well as other shared resources (network load, storage cluster).
+The download time depends on the disk speed which is shared with other VMs running on the same physical server, as well as other shared resources (network load, storage cluster).
 
-![image_a](https://github.com/bioinformatics-ca/bioinformatics-ca.github.io/blob/master/2016_workshops/collaboratory/mod3/mod3_ddd.png?raw=true)
+For a workflow that runs a few days, the 30 min needed to retrieve the data represent only a small fraction.
+
+<img src="https://github.com/bioinformatics-ca/bioinformatics-ca.github.io/blob/master/2016_workshops/collaboratory/mod3/mod3_ddd.png?raw=true" width="750" />
 
 ### Important Notes
 
-ICGC data stored in AWS S3 is only available from EC2 instances.
-
-Download of ICGC protected data from S3 is only available within the “us-east-1” EC2 region of AWS.
+ICGC data stored in AWS S3 is only available from EC2 instances within the “us-east-1” EC2 region of AWS.
 
 ICGC data stored in Cancer Genome Collaboratory is only available from VMs inside Collaboratory.
 
@@ -387,6 +392,7 @@ It is the responsibility of the users to protect access to the EC2 or Collaborat
 
 Do not snapshot a VM that contains confidential tokens or protected data if the snapshot is intended to be shared with other cloud users. Also, keep in mind that other members of the same project as you could start instances from your snapshot and by doing so, have access to the data or tokens you left inside.
 
-Leave your VM running as it will be used in the second lab.
 
 Congratulations, you have completed lab 1.
+
+**Note:** Leave your VM running as it will be used in the second lab.
