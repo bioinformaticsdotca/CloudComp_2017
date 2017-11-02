@@ -106,19 +106,24 @@ Repeat this step and add a second rule allowing access to TCP port 80:
 In the menu on the left, select "Instances."  Click on the "Launch Instance" button and follow the same screens as in the previous lab to start an instance with the following settings:
 
 ** Instance Name: use your last name **
+
 <img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/instance_name.png?raw=true" width="750" />
 
 ** Select Boot Source: Image, Create New Volume: No, Ubuntu 16.04 - latest**
+
 <img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/image.png?raw=true" width="750" />
 
 ** Flavor: c1.micro **
+
 <img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/flavor.png?raw=true" width="750" />
 
 ** Network: CCRC_workshop_net (it should be already selected) **
+
 <img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/network.png?raw=true" width="750" />
 
-** Network Ports: nothing to change here **
-** Security group: default **
+** Network Ports: nothing to change here **  
+** Security group: default **  
+
 <img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/sec_group.png?raw=true" width="750" />
 
 ** Key Pair: your keypair's name (it should be already selected) **
@@ -142,7 +147,11 @@ It is recommended to associate a floating/public IP address only to a single VM 
 From the "Compute" menu, select "Instances."  Beside the name of your instance, select "Associate Floating IP." and follow the screenshots below to associate a floating IP with your virtual machine.
 
 <img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/floating1.png?raw=true" width="750" />
+
+
 <img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/floating2.png?raw=true" width="750" />
+
+
 <img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/floating3.png?raw=true" width="750" />
 
 ## SSH Into Your Instance
@@ -175,15 +184,15 @@ To configure Putty, start Putty and do the following:
 XXX is the last octet from the floating IP address you assign to the instance.
 
  
-<img src="../../../resources/Putty_Basic_Options.png" alt="Basic Putty Options" class="center" width="750">
+<img src="https://github.com/bioinformatics-ca/bioinformatics-ca.github.io/blob/master/resources/Putty_Basic_Options.png?raw=true" alt="Basic Putty Options" class="center" width="750">
 
 * In the left hand categories, under the Connection category choose Data.  In the auto-login username field write ***ubuntu***.
 
-<img src="../../../resources/Putty_Data_Options.png" alt="Putty Data Options" class="center" width="750"> 
+<img src="https://github.com/bioinformatics-ca/bioinformatics-ca.github.io/blob/master/resources/Putty_Data_Options.png?raw=true" alt="Putty Data Options" class="center" width="750"> 
 
 * In the left hand categories, in the Connection category next to SSH click on the **+**. Click on Auth. In the private-key file for authentication field, hit browse and find the private key that you converted previously from a PEM format to a PPK format.
 
-<img src="../../../resources/Putty_Auth_Options.png" alt="Putty Auth Options" class="center" width="750">
+<img src="https://github.com/bioinformatics-ca/bioinformatics-ca.github.io/blob/master/resources/Putty_Auth_Options.png?raw=true" alt="Putty Auth Options" class="center" width="750">
 
 * In the left hand categories, click on Session.  In the Saved Sessions field write **Collaboratory** and click save.
 
