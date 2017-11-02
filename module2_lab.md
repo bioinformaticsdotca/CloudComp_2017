@@ -7,11 +7,9 @@ header2: Working with Big Cancer Data in the Collaboratory Cloud 2017 Module 2 L
 image: /site_images/CBW_bigdata_icon.jpg
 home: https://bioinformaticsdotca.github.io/CloudComputing_2017
 description: This module will cover 
-author: George M.
+author: George Mihaiescu
 modified: 2017-10-30
 ---
-
-#Big Data Analysis in the Cloud  lab
 
 This lab was created by George Mihaiescu
 
@@ -48,20 +46,23 @@ The lab may take between 1-2 hours, depending on your familiarity with Cloud Com
 ## Exercise I: Visit the DCC portal and search for data you need for your research
 
 In your browser, go to <https://dcc.icgc.org>. Select the "Advanced search tab".
-<img src="dcc_main.png?raw=true" width="750" />
 
-Select the "Project: BTCA-SG" and "Gender: Male" and "Tumour stage: IVA".
-Click on the "View in Data Repositories" button.
+<img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/dcc_main.png?raw=true" width="750" />
+
+Select the "Project: BTCA-SG" and "Gender: Male" and "Tumour stage: IVA".  
+Click on the "View in Data Repositories" button.  
+
 <img src="dcc_advanced_search.png?raw=true" width="750" />
 
 Further filter the data selection by selecting the "Repository: Collaboratory" and "File Format: VCF".
 
-<img src="manifest_adv.png?raw=true" width="750" />
+<img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/manifest_adv.png?raw=true" width="750" />
 
 Click on the "Manifests" button and then on "Manifest ID" to generate a manifest ID for your data selection, and copy it as you will need it in the next steps.
-<img src="manifest.png?raw=true" width="750" />
 
-<img src="manifest_save.png?raw=true" width="750" />
+<img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/manifest.png?raw=true" width="750" />
+
+<img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/manifest_save.png?raw=true" width="750" />
 
 ## SSH into your VM left running from first lab and try to download the files you selected using the manifest file downloaded from the DCC portal.
 
@@ -72,11 +73,14 @@ sudo docker run -v /tmp/:/data -v /home/ubuntu/application.properties:/icgc/icgc
 ```
 
 **Note:** If you havo DACO access for ICGC, you can login the DCC portal and obtain a valid Collaboratory download token and add it to the "/home/ubuntu/application.properties" file.
+
 Without a valid token, the download of the data selected from the DCC portal will fail.
 
 
 Try to use the DCC portal to select other data sets. Can you find all the alligned reads files for the Stage II melanoma cancer, female, stored in Collaboratory?
+
 How many files are and what is their total size? 
+
 Think what type of flavor you could use to analyse the data, knowing only the disk space requirements of the analysis.
 
 ## Exercise II: How to use cloud-init to automate provisioning tasks
@@ -167,11 +171,11 @@ Launch the instance by hitting the "Launch" button. It will take a few minutes f
 
 You can watch the script execution progress by selecting "View Log" from the drop-down menu on the right side:
 
-<img src="view_log1.png?raw=true" width="750" />
+<img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/view_log1.png?raw=true" width="750" />
 
 You can then click on View Full Log and refresh the browser page (Ctrl+R) every minute to update it with the output generated:
 
-<img src="full_log.png?raw=true" width="750" />
+<img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/full_log.png?raw=true" width="750" />
 
 ## Associate a Floating/Public IP Address
 
@@ -179,7 +183,7 @@ By default, the VM will have a private IP allocated that is only reachable from 
 
 Delete the VM created in the first lab to free up your floating IP, or dissassociate it using the drop-down action menu on the right side.
 
-<img src="dissassociate_floating_ip.png?raw=true" width="750" />
+<img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/dissassociate_floating_ip.png?raw=true" width="750" />
 
 After the floating IP is free, you can associate it with the newly created VM.
 
@@ -191,7 +195,7 @@ XXX is the last octet from the floating IP address you assigned to the instance.
 
 Finally, visit the Object store, Containers section in dasgboard to see your analysis result that was uploaded in the bucket named by your last name:
 
-<img src="bucket.png?raw=true" width="750" />
+<img src="https://github.com/bioinformaticsdotca/CloudComp_2017/blob/master/bucket.png?raw=true" width="750" />
 
 **If you increased the quantity to 30 instances you would have the same results as having 30 users automate the analysis, but using a single VM at a time**
 
