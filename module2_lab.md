@@ -69,9 +69,16 @@ Click on the "Manifests" button and then on "Manifest ID" to generate a manifest
 Run the icgc docker container providing the manifest file:
 
 ```
-sudo docker run -v /tmp/:/data -v /home/ubuntu/application.properties:/icgc/icgc-storage-client/conf/application.properties --privileged icgc/icgc-storage-client bin/icgc-storage-client --profile collab download --object-id OBJECT_ID --output-dir /data
+sudo docker run -v /tmp/:/data -v /home/ubuntu/application.properties:/icgc/icgc-storage-client/conf/application.properties --privileged icgc/icgc-storage-client bin/icgc-storage-client --profile collab download --manifest OBJECT_ID --output-dir /data
 ```
 
+<<<<<<< HEAD
+**Note:** If you have DACO access for ICGC, you can log in the DCC portal and obtain a valid Collaboratory download token and add it to the "/home/ubuntu/application.properties" file so the download can succeed.
+Without a valid token, the download of the data selected from the DCC portal will fail.
+
+
+Try to use the DCC portal to select other data sets. Can you find all the files for the skin cancer, female, tumour stage IIA and WGS analysis type stored in Collaboratory?
+=======
 **Note:** If you havo DACO access for ICGC, you can login the DCC portal and obtain a valid Collaboratory download token and add it to the "/home/ubuntu/application.properties" file.
 
 Without a valid token, the download of the data selected from the DCC portal will fail.
@@ -79,6 +86,7 @@ Without a valid token, the download of the data selected from the DCC portal wil
 
 Try to use the DCC portal to select other data sets. Can you find all the alligned reads files for the Stage II melanoma cancer, female, stored in Collaboratory?
 
+>>>>>>> 087107f6c1af9a874e72896badbe22f0bda6ae5f
 How many files are and what is their total size? 
 
 Think what type of flavor you could use to analyse the data, knowing only the disk space requirements of the analysis.
