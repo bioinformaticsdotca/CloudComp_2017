@@ -21,13 +21,11 @@ Pre-readings, pre-work, and laptop setup instructions can be found [here](https:
 
 *<font color="#827e9c">Ann Meyer</font>*  
 
-[Lecture]()  
-
 ## Module 1: Introduction to the Cancer Genome Collaboratory  
 
 *<font color="#827e9c">George Mihaiescu</font>*   
 
-[Lecture]()   
+[Lecture](https://www.dropbox.com/s/vd4wzplfhqbwftv/CCRC_lecture%20I.pptx?dl=0)   
 
 [Lab Practical](https://bioinformaticsdotca.github.io/cloudcomputing_2017_module1_lab)
 
@@ -36,5 +34,9 @@ Pre-readings, pre-work, and laptop setup instructions can be found [here](https:
 *<font color="#827e9c">Paul Boutros</font>*   
 
 [Lecture]()  
+
+*<font color="#827e9c">George Mihaiescu</font>*   
+
+[Lab practical lecture](https://www.dropbox.com/s/mw68xgrpx0hs0bh/CCRC_lab_II_exercise.pptx?dl=0)  
 
 [Lab Practical](https://bioinformaticsdotca.github.io/cloudcomputing_2017_module2_lab)  
