@@ -33,7 +33,7 @@ Pre-readings, pre-work, and laptop setup instructions can be found [here](https:
 
 *<font color="#827e9c">Paul Boutros</font>*   
 
-[Lecture]()  
+[Lecture](https://www.dropbox.com/s/go4b2btsn6j0t62/CBW_Collaboratory_2017_CCRC_PaulBoutros.pptx?dl=0)   
 
 *<font color="#827e9c">George Mihaiescu</font>*   
 
