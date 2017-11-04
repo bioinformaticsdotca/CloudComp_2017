@@ -214,12 +214,13 @@ Run the following commands to install the Docker repository and required depende
 ```
 sudo apt-get install -y apt-transport-https ca-certificates unzip
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo apt-get update
 
 sudo add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
    $(lsb_release -cs) \
    stable"
+sudo apt-get update
+
 ```
 
 The following commands will install Docker and run hello-world to test the installation:
