@@ -25,7 +25,9 @@ Pre-readings, pre-work, and laptop setup instructions can be found [here](https:
 
 *<font color="#827e9c">George Mihaiescu</font>*   
 
-[Lecture](https://www.dropbox.com/s/vd4wzplfhqbwftv/CCRC_lecture%20I.pptx?dl=0)   
+[Lecture](https://drive.google.com/a/bioinformatics.ca/file/d/11D2NjTVaShzJde8--BsBUxitQkxZ0kMR/view?usp=sharing)  
+
+[Recording](https://youtu.be/4H0cVtoCABg)  
 
 [Lab Practical](https://bioinformaticsdotca.github.io/cloudcomputing_2017_module1_lab)
 
@@ -33,7 +35,9 @@ Pre-readings, pre-work, and laptop setup instructions can be found [here](https:
 
 *<font color="#827e9c">Paul Boutros</font>*   
 
-[Lecture](https://www.dropbox.com/s/go4b2btsn6j0t62/CBW_Collaboratory_2017_CCRC_PaulBoutros.pptx?dl=0)   
+[Lecture](https://drive.google.com/a/bioinformatics.ca/file/d/1DlZdQs7jcnkvyebqrLe5ad5uJO-9V0o7/view?usp=sharing)   
+
+[Recording](https://youtu.be/33GiJXTnWrs)  
 
 *<font color="#827e9c">George Mihaiescu</font>*   
 
