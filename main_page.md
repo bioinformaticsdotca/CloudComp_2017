@@ -6,7 +6,7 @@ header1: Workshop Pages for Students
 header2: Working with Big Cancer Data in the Collaboratory Cloud 2017
 image: /site_images/CBW_bigdata_icon.jpg
 keywords: Pull in data sets from Cloud repositories, launch own virtual machine, run a data analysis pipeline in the Cloud
-descriptions: Course covers the bioinformatics tools available to facilitate complex analyses on big cancer genome data projects, and a hands-on introduction to launching and configuring a virtual machine. 
+descriptions: Course covers the bioinformatics tools to provide a hands-on introduction to launching and configuring a virtual machine, accessing Cloud-based data sets.  
 instructors: George Mihaiescu, Paul Boutros
 length: 1 day
 ---
