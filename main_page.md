@@ -5,6 +5,9 @@ title: CCRC Cloud Computing
 header1: Workshop Pages for Students
 header2: Working with Big Cancer Data in the Collaboratory Cloud 2017
 image: /site_images/CBW_bigdata_icon.jpg
+keywords: Pull in data sets from Cloud repositories, launch own virtual machine, run a data analysis pipeline in the Cloud
+instructors: George Mihaiescu, Paul Boutros
+length: 1 day
 ---
 
 # Welcome <a id="welcome"></a>
